@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add A Post | There's That Blog
+{% endblock %}
+
+{% block content %}
+<div class="entry-form">
+    <form action="/newpost" method="post">
+        <table>
+            <tr>
+                <td><label for="title">Title</label></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="title" name="title" {% if title %}value="{{title}}" {% endif %}></td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea rows="20" cols="100" name="body">{% if body %}{{body}}{% endif %}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>After Submission:</td>
+                <td><label><input type="radio" name="goto" value="blog" checked>Go to Home</label></td>
+                <td><label><input type="radio" name="goto" value="entry">Go to Entry</label></td>
+            </tr>
+            <tr>
+
+                <td><button id="reset-btn" type="reset">Reset</button></td>
+                <td><button id="submit-btn" type="submit">Submit</button></td>
+            </tr>
+        </table>
+    </form>
+
+<div>
+    <a href="/blog"><button id="cancel-btn">Cancel</button></a></div>
+</div>
+{% endblock %}

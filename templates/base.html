@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+    <header>
+        <div class="nav">
+            <nav>
+                <ul>
+                    <div class="nav-link">
+                        <li><a href="/blog">Home</a></li>
+                    </div>
+                    <div class="nav-link">
+                        <li><a href="/newpost">Add A Post</a></li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="flashes">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <p>&copy; Tito Dynamite 2018</p>
+    </footer>
+</body>
+
+</html>

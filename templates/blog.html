@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+There's That Blog
+{% endblock %}
+
+{% block content %}
+
+<h1>
+  There's That Blog
+</h1>
+
+{% if posts %}
+{% for entry in posts %}
+
+<div class="entry">
+  <h2>
+    <a href="/blog?id={{entry.id}}">{{entry.title}}</a>
+  </h2>
+  <h3>
+    {{entry.pub_date}}
+  </h3>
+  <p>
+    {{entry.body}}
+  </p>
+</div>
+
+{% endfor %}
+{% endif %}
+{% endblock %}

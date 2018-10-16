@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home | Blogz
+{% endblock %}
+
+{% block content %}
+
+<h1>blog users!</h1>
+
+{% if users %}
+{% for user in users %}
+
+<ul>
+<li><a href="/blog?user={{username}}">{{username}}</a></li>
+</ul>
+
+{% endfor %}
+{% else %}
+
+<p>No users yet :(</p>
+
+{% endif %}
+
+{% endblock %}

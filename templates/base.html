@@ -15,13 +15,14 @@
     <header>
         <div class="nav">
             <nav>
+                <ul id="user-account">
+                    <li><a href="/login">login</a></li>
+                    <li><a href="/logout">logout</a></li>
+                </ul>
                 <ul>
-                    <div class="nav-link">
-                        <li><a href="/blog">Home</a></li>
-                    </div>
-                    <div class="nav-link">
-                        <li><a href="/newpost">Add A Post</a></li>
-                    </div>
+                    <li><a href="/">home</a></li>
+                    <li><a href="/blog">all posts</a></li>
+                    <li><a href="/blog/newpost">new post</a></li>
                 </ul>
             </nav>
         </div>
@@ -30,9 +31,9 @@
     <div class="flashes">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-            {% for message in messages %}
-            <p>{{ message }}</p>
-            {% endfor %}
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
         {% endif %}
         {% endwith %}
     </div>

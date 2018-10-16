@@ -21,17 +21,6 @@ class Post(db.Model):
         self.title = title
         self.body = body
 
-# The /blog route displays all the blog posts.
-
-# You're able to submit a new post at the /newpost route. 
-# After submitting a new post, your app displays the main blog page.
-
-# You have two templates, one each for the /blog (main blog listings) and /newpost (post new blog entry) views. 
-# Your templates should extend a base.html template which includes some boilerplate HTML that will be used on each page.
-
-# In your base.html template, you have some navigation links that link to the main blog page and to the add new blog page.
-
-# If either the blog title or blog body is left empty in the new post form, the form is rendered again, with a helpful error message and any previously-entered content in the same form inputs.
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')

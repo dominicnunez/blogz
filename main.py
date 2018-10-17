@@ -17,33 +17,76 @@ class Post(db.Model):
     title = db.Column(db.String(60), nullable=False)
     body = db.Column(db.String(2100), nullable=False)
     pub_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    owner_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
     def __init__(self, title, body):
         self.title = title
         self.body = body
+class User(db.Model):
 
-# class User(db.Model):
-    
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    username = db.Column(db.String(13), unique=True, nullable=False)
+    password = db.Column(db.String(16), nullable=False)
+    posts = db.relationship("Post", backref="username", nullable=False)
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
 
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
+@app.before_request
+def require_login():
+    allowed_routes = ['login', 'register']
+    if request.endpoint not in allowed_routes and 'email' not in session:
+        return redirect('/login')
+
 @app.route("/")
 def fIndex():
     return render_template("index.html")
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-    return render_template("login.html")
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        user = User.query.filter_by(email=email).first()
+        if user and user.password == password:
+            session['email'] = email
+            flash("Logged in")
+            return redirect('/')
+        else:
+            flash('User password incorrect, or user does not exist', 'error')
+
+    return render_template('login.html')
 
 @app.route("/logout")
 def logout():
     return redirect("/blog")
+    
+@app.route('/signup', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        # verify = request.form['verify']
 
-@app.route("/signup", methods=["GET", "POST"])
-def signup():
-    return render_template("signup.html")
+        # TODO - validate user's data
+
+        existing_user = User.query.filter_by(email=email).first()
+        if not existing_user:
+            new_user = User(email, password)
+            db.session.add(new_user)
+            db.session.commit()
+            session['email'] = email
+            return redirect('/')
+        else:
+            # TODO - user better response messaging
+            return "<h1>Duplicate user</h1>"
+
+    return render_template('signup.html')
 
 @app.route('/blog')
 def fBlog():

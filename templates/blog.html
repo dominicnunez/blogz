@@ -18,13 +18,10 @@ There's That Blog
     <a href="/blog?id={{post.id}}">{{post.title}}</a>
   </h2>
 
-  <h3>{{post.pub_date}}</h3>
-
   <p>{{post.body}}</p>
 
-  <p>
-    <a href="/blog?={{post.owner_id}}">{{post.author}}</a>
-  </p>
+  <p>Author: <a href="/blog?user={{post.owner_id}}">{{post.owner.username}}</a></p>
+  <p>Published: {{post.pub_date}}</p>
 </div>
 
 {% endfor %}

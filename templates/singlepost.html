@@ -19,7 +19,7 @@
   <p>
     {{post.body}}
   </p>
-  <p>Created by: <a href="/blog?user={{post.owner_id}}">{{post.author}}</a></p>
+  <p>Created by: <a href="/blog?user={{post.owner_id}}">{{post.owner.username}}</a></p>
 </div>
 
 {% endif %}

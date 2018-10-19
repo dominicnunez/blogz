@@ -27,7 +27,7 @@ class Post(db.Model):
     title = db.Column(db.String(60), nullable=False)
     body = db.Column(db.String(2100), nullable=False)
     pub_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    owner_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey("owner.id"), nullable=False)
 
     def __init__(self, owner, title, body):
         self.owner = owner
@@ -81,7 +81,7 @@ def blog():
         return render_template("singlepost.html", post=post)
 
     posts = Post.query.all()
-    return render_template('blog.html', posts=posts, user=session["username"])
+    return render_template('blog.html', posts=posts)
 
 
 @app.route("/blog/newpost", methods=["GET", "POST"])

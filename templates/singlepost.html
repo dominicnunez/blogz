@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if post %}
+{{post.title}} | There's That Blog
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if post %}
+
+<div class="single-post">
+  <h2>
+    {{post.title}}
+  </h2>
+  <h3>
+    {{post.pub_date}}
+  </h3>
+  <p>
+    {{post.body}}
+  </p>
+  <p>Created by: <a href="/blog?user={{post.owner_id}}">{{post.author}}</a></p>
+</div>
+
+{% endif %}
+{% endblock %}

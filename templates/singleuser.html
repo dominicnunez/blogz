@@ -1,9 +1,25 @@
 {% extends "base.html" %}
 
 {% block title %}
-
+{{owner}} | Blogz
 {% endblock %}
 
 {% block content %}
 
+<h1>blog posts!</h1>
+
+{% if posts|length == 0 %}
+
+    <p>No blog posts yet.</p>
+
+{% else %}
+{% for post in posts|sort(attribute="id", reverse=True) %}
+
+<h2><a href="/blog?=id={{post.id}}">{{post.title}}</a></h2>
+<p>{{post.body}}</p>
+<p><a href="/blog?={{post.owner_id}}">{{owner}}</a></p>
+<p>{{post.pub_date}}</p>
+
+{% endfor %}
+{% endif %}
 {% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+There's That Blog
+{% endblock %}
+
+{% block content %}
+
+<h1>
+There's That Blog
+</h1>
+
+{% if posts %}
+{% for post in posts %}
+
+<div class="post">
+  <h2>
+    <a href="/blog?id={{post.id}}">{{post.title}}</a>
+  </h2>
+
+  <h3>{{post.pub_date}}</h3>
+
+  <p>{{post.body}}</p>
+
+  <p>
+    <a href="/blog?={{post.owner_id}}">{{post.author}}</a>
+  </p>
+</div>
+
+{% endfor %}
+{% else %}
+
+<p>No blog posts yet.</p>
+
+{% endif %}
+{% endblock %}

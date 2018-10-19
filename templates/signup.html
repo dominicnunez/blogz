@@ -7,34 +7,42 @@ Signup | Blogz
 {% block content %}
 <h1>Signup</h1>
 <form method="post">
-<table>
-    <tbody><tr>
-        <td><label for="username">Username</label></td>
-        <td>
-            <input name="username" type="text" value="">
-            <span class="error"></span>
-        </td>
-    </tr>
-    <tr>
-        <td><label for="password">Password</label></td>
-        <td>
-            <input name="password" type="password">
-            <span class="error"></span>
-        </td>
-    </tr>
-    <tr>
-        <td><label for="verify">Verify Password</label></td>
-        <td>
-            <input name="verify" type="password">
-            <span class="error"></span>
-        </td>
-    </tr>
-</tbody></table>
-<tfoot>
-    <tr>
-        <td><button type="reset">Reset</button></td>
-        <td><button type="submit">Submit</button></td>
-    </tr>
-</tfoot>
+    <table>
+        <tbody>
+            <tr>
+                <td><label for="username">Username</label></td>
+                <td>
+                    <input name="username" type="text" value="">
+                    {% if username_error %}
+                    <span class="error">{{username_error}}</span>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td>
+                    <input name="password" type="password">
+                    {% if password_error %}
+                    <span class="error">{{password_error}}</span>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td><label for="verify">Verify Password</label></td>
+                <td>
+                    <input name="verify" type="password">
+                    {% if verify_error %}
+                    <span class="error">{{verify_error}}</span>
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <tfoot>
+        <tr>
+            <td><button type="reset">Reset</button></td>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </tfoot>
 </form>
 {% endblock %}

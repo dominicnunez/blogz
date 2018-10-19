@@ -5,50 +5,22 @@ Add A Post | There's That Blog
 {% endblock %}
 
 {% block content %}
-<!-- <div class="entry-form">
-    <form action="/blog/newpost" method="post">
-        <table>
-            <tr>
-                <td><label for="title">Title</label></td>
-            </tr>
-            <tr>
-                <td><input type="text" id="title" name="title" {% if title %}value="{{title}}" {% endif %}></td>
-            </tr>
-            <tr>
-                <td>
-                    <textarea rows="20" cols="100" name="body">{% if body %}{{body}}{% endif %}</textarea>
-                </td>
-            </tr>
-            <tr>
-                <td>After Submission:</td>
-                <td><label><input type="radio" name="goto" value="blog" checked>Go to Blog</label></td>
-                <td><label><input type="radio" name="goto" value="entry">Go to Entry</label></td>
-            </tr>
-            <tr>
-
-                <td><button id="reset-btn" type="reset">Reset</button></td>
-                <td><button id="submit-btn" type="submit">Submit</button></td>
-            </tr>
-        </table>
-    </form>
-
-<div>
-    <a href="/blog"><button id="cancel-btn">Cancel</button></a>
-</div> -->
 <h1>new post</h1>
-
+{% if error %}
+<span class="error">{{error}}</span>
+{% endif %}
 <form method="post">
-<label>
-    <div>title</div>
-    <input type="text" name="title" value="">
-</label>
-<label>
-    <div>post</div>
-    <textarea name="body"></textarea>
-</label>
-<div class="error"></div>
-<button id="reset-btn" type="reset">Reset</button>
-<button id="submit-btn" type="submit">Submit</button>
+    <label>
+        <div>title</div>
+        <input type="text" name="title" {% if title %}value="{{title}}" {% endif %}>
+    </label>
+    <label>
+        <div>post</div>
+        <textarea name="body">{% if body %}{{body}}{% endif %}</textarea>
+    </label>
+    <div class="error"></div>
+    <button id="reset-btn" type="reset">Reset</button>
+    <button id="submit-btn" type="submit">Submit</button>
 </form>
 <div>
     <a href="/blog"><button id="cancel-btn">Cancel</button></a>

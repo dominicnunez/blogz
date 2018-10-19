@@ -11,7 +11,7 @@ There's That Blog
 </h1>
 
 {% if posts %}
-{% for post in posts %}
+{% for post in posts|sort(attribute="id", reverse=True) %}
 
 <div class="post">
   <h2>

@@ -15,7 +15,7 @@
 {% else %}
 {% for post in posts|sort(attribute="id", reverse=True) %}
 
-<h2><a href="/blog?=id={{post.id}}">{{post.title}}</a></h2>
+<h2><a href="/blog?id={{post.id}}">{{post.title}}</a></h2>
 <p>{{post.body}}</p>
 <p>{{post.pub_date}}</p>
 

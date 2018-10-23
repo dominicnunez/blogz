@@ -81,7 +81,7 @@ def blog():
         return render_template("singlepost.html", post=post)
 
     posts = Post.query.all()
-    return render_template('blog.html', posts=posts, user=session["username"])
+    return render_template('blog.html', posts=posts)
 
 
 @app.route("/blog/newpost", methods=["GET", "POST"])
